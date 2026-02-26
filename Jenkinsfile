@@ -9,12 +9,12 @@ pipeline {
             }
         }
 
-        stage('Build Backend Image') {
-            steps {
-                sh 'docker rmi -f backend-app || true'
-                sh 'docker build -t backend-app ./backend'
-            }
-        }
+       stage('Build NGINX Image') {
+    steps {
+        sh 'docker rmi -f nginx-app || true'
+        sh 'docker build -t nginx-app -f Dockerfile.jenkins .'
+    }
+}
 
         stage('Deploy Backend Container') {
             steps {
